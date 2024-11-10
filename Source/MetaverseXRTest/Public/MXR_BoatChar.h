@@ -49,7 +49,11 @@ protected:
 	//Steer Function
 	void Steer(const FInputActionValue& Value);
 
-public:	
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Boat Controls", meta = (AllowPrivateAccess = "true"))
+	float throttleSpeed;
+	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

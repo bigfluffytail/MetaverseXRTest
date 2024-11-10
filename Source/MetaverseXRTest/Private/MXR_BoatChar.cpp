@@ -19,7 +19,7 @@ AMXR_BoatChar::AMXR_BoatChar()
 
 	//Spring arm creation for camera manipulation
 	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>("Spring Arm");
-	SpringArmComponent->SetupAttachment(RootComponent);
+	SpringArmComponent->SetupAttachment(MeshComp);
 	
 	//Camera component creation + attachment
 	CameraComp = CreateDefaultSubobject<UCameraComponent>("Camera Component");
@@ -56,9 +56,7 @@ void AMXR_BoatChar::Throttle(const FInputActionValue& Value)
 
 	if(Controller != nullptr)
 	{
-
-		AddMovementInput(GetActorForwardVector(), throttleValue);
-		
+		GetCapsuleComponent()->AddForce(MeshComp->GetForwardVector() * (throttleSpeed * throttleValue), NAME_None, true);
 	}
 	
 }
@@ -68,12 +66,7 @@ void AMXR_BoatChar::Steer(const FInputActionValue& Value)
 {
 
 	float steerValue = Value.Get<float>();
-	if(Controller != nullptr)
-	{
-
-		AddControllerYawInput(steerValue);
-		
-	}
+	MeshComp->AddLocalRotation(FRotator(0, steerValue, 0));
 	
 }
 
