@@ -6,6 +6,7 @@
 #include "Camera/CameraComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Components/CapsuleComponent.h"
 
 // Sets default values
 AMXR_BoatChar::AMXR_BoatChar()
@@ -13,10 +14,13 @@ AMXR_BoatChar::AMXR_BoatChar()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>("Mesh");
+	MeshComp->SetupAttachment(RootComponent);
+
 	//Spring arm creation for camera manipulation
 	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>("Spring Arm");
 	SpringArmComponent->SetupAttachment(RootComponent);
-
+	
 	//Camera component creation + attachment
 	CameraComp = CreateDefaultSubobject<UCameraComponent>("Camera Component");
 	CameraComp->SetupAttachment(SpringArmComponent);

@@ -41,6 +41,9 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* CameraComp;
 
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* MeshComp;
+
 	//Throttle Function
 	void Throttle(const FInputActionValue& Value);
 	//Steer Function
