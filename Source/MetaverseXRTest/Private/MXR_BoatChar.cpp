@@ -97,6 +97,13 @@ void AMXR_BoatChar::Throttle(const FInputActionValue& Value)
 	
 }
 
+void AMXR_BoatChar::ThrottleStop(const FInputActionValue& Value)
+{
+
+	throttleValue = Value.Get<float>();
+	
+}
+
 
 void AMXR_BoatChar::Steer(const FInputActionValue& Value)
 {
@@ -117,6 +124,8 @@ void AMXR_BoatChar::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 		// Move Action
 		// Every time W or S is pressed, run the Throttle function
 		EnhancedInputComponent->BindAction(ThrottleAction, ETriggerEvent::Triggered, this, &AMXR_BoatChar::Throttle);
+		EnhancedInputComponent->BindAction(ThrottleAction, ETriggerEvent::Canceled, this, &AMXR_BoatChar::ThrottleStop);
+		EnhancedInputComponent->BindAction(ThrottleAction, ETriggerEvent::Completed, this, &AMXR_BoatChar::ThrottleStop);
 
 		// Turning inputs
 		// Every time A or D is pressed, or let go, run the Steer function

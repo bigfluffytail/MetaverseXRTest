@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "MXR_BoatSpline.h"
 #include "GameFramework/Actor.h"
 #include "MXR_BoatObstacle.generated.h"
 
@@ -27,5 +28,13 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateSplinePos(float alpha);
+	
+	UPROPERTY(EditAnywhere)
+	AMXR_BoatSpline* SplineRef;
+
+	USplineComponent* SplineComp;
 
 };

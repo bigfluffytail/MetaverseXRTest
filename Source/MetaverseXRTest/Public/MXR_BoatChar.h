@@ -41,17 +41,18 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* CameraComp;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UStaticMeshComponent* MeshComp;
-
+	
 	//Throttle Function
 	void Throttle(const FInputActionValue& Value);
+	void ThrottleStop(const FInputActionValue& Value);
 	//Steer Functions
 	void Steer(const FInputActionValue& Value);
 	void SteerStop(const FInputActionValue& Value);
 
 public:
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Boat Controls", meta = (AllowPrivateAccess = "true"))
 	float throttleSpeed;
 	float throttleValue;
